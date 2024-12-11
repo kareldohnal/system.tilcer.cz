@@ -1,0 +1,18 @@
+.adminBlock {
+
+  &__heading {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__preHeading {
+    width: 10%;
+  }
+
+  &__postHeading {
+    flex: 1;
+  }
+}

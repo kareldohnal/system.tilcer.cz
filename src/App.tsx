@@ -15,7 +15,7 @@ function App() {
         <>
             {!token || !tokenValid
                 ? <Login/>
-                : <div>
+                : <div className={"app"}>
                     <AdminBlock name={"jidlo.tilcer.cz"}>
                         <ActionBlock
                             apiCall={fetchJidloRebuild}
