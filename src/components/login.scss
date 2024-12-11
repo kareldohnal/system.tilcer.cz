@@ -1,0 +1,47 @@
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.login {
+  background: lightgray;
+  border-radius: 8px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  width: 400px;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__label {
+    display: flex;
+    justify-content: space-between;
+
+    & > input {
+      background: white;
+      border-radius: 4px;
+      color: black;
+      width: 290px;
+    }
+  }
+
+  &__error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+    height: 12px;
+
+    &.shake {
+      animation: shake 0.3s;
+    }
+  }
+}
