@@ -4,26 +4,31 @@ import {useSetAtom} from "jotai/react";
 import {tokenAtom} from "../atomStore.ts";
 import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
+import {Alert, Button, Form, FormProps, Input} from "antd";
+
+type FieldType = {
+    username: string;
+    password: string;
+};
 
 const Login = () => {
     const setToken = useSetAtom(tokenAtom);
     const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
 
-    const { data: token, error: tokenError, refetch } = useQuery({
+    const {data: token, error: tokenError, refetch, isLoading} = useQuery({
         queryKey: ['fetchToken'],
         queryFn: () => fetchToken(identifier, password),
         enabled: false,
         retry: false,
     })
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const target = e.target as HTMLFormElement;
-        setIdentifier(target.identifier.value)
-        setPassword(target.password.value)
+
+    const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
+        setIdentifier(values.username)
+        setPassword(values.password)
         refetch();
-    }
+    };
 
     useEffect(() => {
         if (token) {
@@ -33,18 +38,49 @@ const Login = () => {
 
     return (
         <div className={"login"}>
-            <form onSubmit={handleSubmit} className={"login__form"}>
-                <label className={"login__label"}>
-                    Username:
-                    <input type="text" name={"identifier"} />
-                </label>
-                <label className={"login__label"}>
-                    Password:
-                    <input type="password" name={"password"} />
-                </label>
-                <div className={`login__error${tokenError ? " shake" : ""}`}>{tokenError && tokenError.message}</div>
-                <button type={"submit"}>Login</button>
-            </form>
+            <Form
+                name="basic"
+                labelCol={{span: 8}}
+                wrapperCol={{span: 16}}
+                style={{maxWidth: 600}}
+                initialValues={{remember: true}}
+                onFinish={onFinish}
+                autoComplete="off"
+            >
+                <Form.Item<FieldType>
+                    label="Username"
+                    name="username"
+                    rules={[{required: true, message: 'Please input your username!'}]}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item<FieldType>
+
+                    label="Password"
+                    name="password"
+                    rules={[{required: true, message: 'Please input your password!'}]}
+                >
+                    <Input.Password autoComplete={"off"}/>
+                </Form.Item>
+
+                {tokenError && (
+                    <Form.Item label={null}>
+                        <Alert type={"error"} message={tokenError.message} className={"w-full"}/>
+                    </Form.Item>
+                )}
+
+                <Form.Item label={null}>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        loading={isLoading}
+                        className={"w-full"}
+                    >
+                        Submit
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
     );
 }
