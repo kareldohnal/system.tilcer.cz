@@ -1,5 +1,6 @@
 import {ReactNode} from "react";
 import "./adminBlock.scss"
+import {Divider} from "antd";
 
 type Props = {
     children: ReactNode;
@@ -10,9 +11,9 @@ const AdminBlock = ({children, name}: Props) => {
     return (
         <div className={"adminBlock"}>
             <div className={"adminBlock__heading"}>
-                <hr className={"adminBlock__preHeading"}/>
-                <h2>{name}</h2>
-                <hr className={"adminBlock__postHeading"}/>
+                <Divider style={{ borderColor: '#ffffff' }} orientation={"left"}>
+                    <h2 className={"adminBlock__heading"}>{name}</h2>
+                </Divider>
             </div>
             {children}
         </div>
