@@ -27,7 +27,9 @@ const Login = () => {
     const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
         setIdentifier(values.username)
         setPassword(values.password)
-        refetch();
+        setTimeout(() => {
+            refetch();
+        }, 0);
     };
 
     useEffect(() => {

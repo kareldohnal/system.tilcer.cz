@@ -11,11 +11,13 @@ const AdminBlock = ({children, name}: Props) => {
     return (
         <div className={"adminBlock"}>
             <div className={"adminBlock__heading"}>
-                <Divider style={{ borderColor: '#ffffff' }} orientation={"left"}>
+                <Divider style={{borderColor: '#ffffff'}} orientation={"left"}>
                     <h2 className={"adminBlock__heading"}>{name}</h2>
                 </Divider>
             </div>
-            {children}
+            <div className={"adminBlock__children"}>
+                {children}
+            </div>
         </div>
     );
 }

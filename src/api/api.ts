@@ -44,3 +44,19 @@ export const fetchJidloRebuild = async (token: string) => {
         return false;
     }
 }
+
+export const fetchSystemFeRebuild = async (token: string) => {
+    try {
+        await fetch(`${SYSTEM_URL}/build-system-fe`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return true;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
