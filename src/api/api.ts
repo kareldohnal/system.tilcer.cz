@@ -1,7 +1,7 @@
-const STRAPI_URL = "https://tilcer.cz";
-// const STRAPI_URL = "http://localhost:1337";
-const SYSTEM_URL = "https://system.tilcer.cz";
-// const SYSTEM_URL = "http://localhost:9000";
+// const STRAPI_URL = "https://tilcer.cz";
+const STRAPI_URL = "http://localhost:1337";
+// const SYSTEM_URL = "https://system.tilcer.cz";
+const SYSTEM_URL = "http://localhost:9000";
 
 export const fetchToken = async (identifier: string, password: string) => {
     try {
