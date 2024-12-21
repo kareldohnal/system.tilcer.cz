@@ -29,12 +29,18 @@ export const fetchToken = async (identifier: string, password: string) => {
 
 export const fetchJidloRebuild = async (token: string) => {
     try {
-        await fetch(`${SYSTEM_URL}/build-jidlo`, {
+        const response = await fetch(`${SYSTEM_URL}/build-jidlo`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
+
+        if (!response.ok) {
+            console.error("Rebuild failed");
+            return false
+        }
+
         return true;
     }
     catch (error) {
@@ -45,12 +51,18 @@ export const fetchJidloRebuild = async (token: string) => {
 
 export const fetchSystemFeRebuild = async (token: string) => {
     try {
-        await fetch(`${SYSTEM_URL}/build-system-fe`, {
+        const response = await fetch(`${SYSTEM_URL}/build-system-fe`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
+
+        if (!response.ok) {
+            console.error("Rebuild failed");
+            return false
+        }
+
         return true;
     }
     catch (error) {
