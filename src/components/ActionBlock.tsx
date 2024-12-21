@@ -17,7 +17,7 @@ const ActionBlock = ({apiCall, apiCallName, buttonText, label}: Props) => {
     const [success, setSuccess] = useState<boolean|null>(null);
     const token = useAtomValue(tokenAtom)
 
-    const { data, error, refetch, isFetching } = useQuery({
+    const { data, refetch, isFetching } = useQuery({
         queryKey: [apiCallName, apiCall],
         queryFn: () => apiCall(token),
         enabled: false,
