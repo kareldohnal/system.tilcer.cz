@@ -1,5 +1,5 @@
 const STRAPI_URL = "https://tilcer.cz";
-const SYSTEM_URL = "https://system.tilcer.cz";
+const SYSTEM_URL = "https://system.tilcer.cz/api";
 
 export const fetchToken = async (identifier: string, password: string) => {
     try {

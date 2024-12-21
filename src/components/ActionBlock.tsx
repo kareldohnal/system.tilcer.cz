@@ -35,9 +35,6 @@ const ActionBlock = ({apiCall, apiCallName, buttonText, label}: Props) => {
         }
     }, [data])
 
-    console.log(data, success)
-    console.log(error)
-
     return (
         <Flex justify={"space-between"} align={"center"} className={"actionBlock p-16"}>
             <div>{label}</div>
